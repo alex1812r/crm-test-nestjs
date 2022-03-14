@@ -1,0 +1,114 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Client {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _id: ID!
+  DNI: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Success {
+  success: Boolean!
+}
+
+type Product {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _id: ID!
+  code: String!
+  name: String!
+  price: Float!
+  imageUrl: String!
+}
+
+type OrderProduct {
+  _id: ID!
+  product: Product!
+  quantity: Int!
+}
+
+type Order {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _id: ID!
+  number: Int!
+  client: Client!
+  productsList: [OrderProduct!]!
+}
+
+type Query {
+  clientsList: [Client!]!
+  client(_id: ID!): Client!
+  productsList: [Product!]!
+  product(_id: ID!): Product!
+  ordersList: [Order!]!
+  order(_id: ID!): Order!
+}
+
+type Mutation {
+  createClient(data: CreateClientInput!): Client!
+  updateClient(_id: ID!, data: UpdateClientInput!): Client!
+  removeClient(_id: ID!): Success!
+  createProduct(data: CreateProductInput!): Product!
+  updateProduct(_id: ID!, data: UpdateProductInput!): Product!
+  removeProduct(_id: ID!): Success!
+  createOrder(data: CreateOrderInput!): Order!
+  updateOrder(_id: ID!, data: UpdateOrderInput!): Order!
+  removeOrder(_id: ID!): Success!
+}
+
+input CreateClientInput {
+  """Documento Nacional de Identidad"""
+  DNI: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+input UpdateClientInput {
+  """Documento Nacional de Identidad"""
+  DNI: String
+  firstName: String
+  lastName: String
+  email: String
+}
+
+input CreateProductInput {
+  code: String!
+  name: String!
+  price: Float!
+  imageUrl: String!
+}
+
+input UpdateProductInput {
+  name: String
+  price: Float
+  imageUrl: String
+}
+
+input CreateOrderInput {
+  number: Int!
+  client: ID!
+  productsList: [CreateOrderProductInput!]!
+}
+
+input CreateOrderProductInput {
+  product: ID!
+  quantity: Int!
+}
+
+input UpdateOrderInput {
+  client: ID
+  addProducts: [CreateOrderProductInput!] = []
+  removeProducts: [String!] = []
+}
