@@ -3,7 +3,7 @@ import {
   MAIL_AUTH_PASSWORD,
   MAIL_AUTH_USER,
   MAIL_SERVICE,
-} from './enviroments';
+} from './env-variables';
 
 export const emailTransporter = nodemailer.createTransport({
   service: MAIL_SERVICE,

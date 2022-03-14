@@ -5,7 +5,7 @@ import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
 import { Order, OrderDocument } from './order.schema';
 import { sendMail } from 'src/shared/email-transport';
-import { MAIL_AUTH_USER } from 'src/shared/enviroments';
+import { MAIL_AUTH_USER } from 'src/shared/env-variables';
 
 @Injectable()
 export class OrdersService {
