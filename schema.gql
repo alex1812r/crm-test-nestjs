@@ -2,25 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Client {
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  _id: ID!
-  DNI: String!
-  firstName: String!
-  lastName: String!
-  email: String!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type Success {
-  success: Boolean!
-}
-
 type Product {
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -30,6 +11,11 @@ type Product {
   price: Float!
   imageUrl: String!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type OrderProduct {
   _id: ID!
@@ -44,6 +30,21 @@ type Order {
   number: Int!
   client: Client!
   productsList: [OrderProduct!]!
+}
+
+type Client {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _id: ID!
+  DNI: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  ordersList: [Order!]!
+}
+
+type Success {
+  success: Boolean!
 }
 
 type Query {

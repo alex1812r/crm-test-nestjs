@@ -40,4 +40,10 @@ export class ClientsService {
     }
     return { success: true };
   }
+
+  async findOrders(_id: string) {
+    return await this.orderModel
+      .find({ client: _id })
+      .populate([{ path: 'client' }, { path: 'productsList.product' }]);
+  }
 }

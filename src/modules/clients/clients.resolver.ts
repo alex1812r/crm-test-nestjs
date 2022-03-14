@@ -1,4 +1,12 @@
-import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ID,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { ClientsService } from './clients.service';
 import { Client } from './entities/client.entity';
 import { CreateClientInput } from './dto/create-client.input';
@@ -35,5 +43,10 @@ export class ClientsResolver {
   @Mutation(() => Success)
   removeClient(@Args('_id', { type: () => ID }) _id: string) {
     return this.clientsService.remove(_id);
+  }
+
+  @ResolveField()
+  async ordersList(@Parent() client: Client) {
+    return await this.clientsService.findOrders(client._id);
   }
 }
