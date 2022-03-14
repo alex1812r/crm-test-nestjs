@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
 import { Client } from 'src/modules/clients/entities/client.entity';
 import { Timestamps } from 'src/shared/entities/Timestamps.entity';
 import { OrderProduct } from './order-product.entity';
